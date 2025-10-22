@@ -49,6 +49,9 @@ if not file_exists:
 
     response = requests.post('https://api.brightdata.com/datasets/v3/trigger', params=params, headers=headers, json=json_data)
 
+    print("Status code:", response.status_code)
+    print("Content:", response.text[:500])  # show first 500 chars
+
     result = json.loads(response.content)
 
     with open(os.getenv("SNAPSHOT_STORAGE_FILE"), "a") as f:
